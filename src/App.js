@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import BarChart from './components/BarChart'
+import Loader from './components/Loader'
 import getData from './api'
 
 export default class MyComponent extends Component {
@@ -24,8 +25,10 @@ export default class MyComponent extends Component {
 		)
 	}
 	render() {
+		const { isFetching, error, chartData } = this.state
 		return (
 			<div>
+				{isFetching && <Loader>Loading data</Loader>}
 				<BarChart />
 			</div>
 		)

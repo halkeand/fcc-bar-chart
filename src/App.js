@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BarChart from './components/BarChart'
 import Loader from './components/Loader'
 import getData from './api'
+import { format } from './utils'
 
 export default class MyComponent extends Component {
 	state = { isFetching: false, chartData: null, error: null }
@@ -12,9 +13,9 @@ export default class MyComponent extends Component {
 		}))
 
 		getData(
-			chartData =>
+			fetchedData =>
 				this.setState(prevState => ({
-					chartData,
+					chartData: format(fetchedData),
 					isFetching: false
 				})),
 			error =>
@@ -31,7 +32,7 @@ export default class MyComponent extends Component {
 			<div>
 				{isFetching && <Loader>Loading data</Loader>}
 				{!isFetching && error && <p>{error}</p>}
-				{chartData && <BarChart />}
+				{chartData && <BarChart chartData={chartData.data} />}
 			</div>
 		)
 	}

@@ -24,12 +24,14 @@ export default class MyComponent extends Component {
 				}))
 		)
 	}
+
 	render() {
 		const { isFetching, error, chartData } = this.state
 		return (
 			<div>
 				{isFetching && <Loader>Loading data</Loader>}
-				<BarChart />
+				{!isFetching && error && <p>{error}</p>}
+				{chartData && <BarChart />}
 			</div>
 		)
 	}

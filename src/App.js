@@ -6,14 +6,20 @@ export default class MyComponent extends Component {
 	state = { isFetching: false, chartData: null, error: null }
 
 	componentDidMount() {
+		this.setState(prevState => ({
+			isFetching: true
+		}))
+
 		getData(
 			chartData =>
 				this.setState(prevState => ({
-					chartData
+					chartData,
+					isFetching: false
 				})),
 			error =>
 				this.setState(prevState => ({
-					error: 'Whoops an error occured while fetching chart data !'
+					error: 'Whoops an error occured while fetching chart data !',
+					isFetching: false
 				}))
 		)
 	}

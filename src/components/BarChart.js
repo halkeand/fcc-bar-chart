@@ -11,7 +11,7 @@ import {
 } from 'recharts'
 
 export default ({ chartData }) => (
-	<ResponsiveContainer width="90%" height={700}>
+	<ResponsiveContainer width="90%" height={500}>
 		<BarChart data={chartData}>
 			<CartesianGrid strokeDasharray="1 1" />
 			<XAxis

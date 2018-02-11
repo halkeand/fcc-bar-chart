@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import BarChart from './components/BarChart'
 import Loader from './components/Loader'
+import ChartInfos from './components/ChartInfos'
 import StyledSection from './components/StyledSection'
 import StyledFooter from './components/StyledFooter'
 import 'normalize.css'
@@ -31,11 +32,20 @@ export default class MyComponent extends Component {
 
 	render() {
 		const { isFetching, error, chartData } = this.state
+		console.log(chartData)
 		return (
 			<StyledSection>
 				{isFetching && <Loader>Loading data</Loader>}
 				{!isFetching && error && <p>{error}</p>}
-				{chartData && <BarChart chartData={chartData.data} />}
+				{chartData && (
+					<Fragment>
+						<ChartInfos
+							chartTitle={chartData.name}
+							chartDesc={chartData.description}
+						/>
+						<BarChart chartData={chartData.data} />
+					</Fragment>
+				)}
 				<StyledFooter />
 			</StyledSection>
 		)

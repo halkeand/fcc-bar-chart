@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BarChart from './components/BarChart'
 import Loader from './components/Loader'
 import StyledSection from './components/StyledSection'
+import StyledFooter from './components/StyledFooter'
 import 'normalize.css'
 import getData from './api'
 import { format } from './utils'
@@ -35,6 +36,7 @@ export default class MyComponent extends Component {
 				{isFetching && <Loader>Loading data</Loader>}
 				{!isFetching && error && <p>{error}</p>}
 				{chartData && <BarChart chartData={chartData.data} />}
+				<StyledFooter />
 			</StyledSection>
 		)
 	}
